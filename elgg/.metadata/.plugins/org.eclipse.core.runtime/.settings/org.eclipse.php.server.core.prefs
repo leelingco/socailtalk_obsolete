@@ -1,0 +1,4 @@
+#Wed Feb 23 22:06:11 PST 2011
+eclipse.preferences.version=1
+defaultPHPServer=Default PHP Web Server
+phpServers=<server><name>Default PHP Web Server</name><hostname>localhost</hostname><base_url>http\://localhost</base_url></server>\u0005<server><port>7070</port><name>elgg</name><hostname>dev.elgg.com</hostname><base_url>http\://dev.elgg.com\:7070/</base_url></server>
