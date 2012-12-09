@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>OpenTok Getting Started</title>
+  <script src="http://static.opentok.com/v0.91/js/TB.min.js"></script>
+ 
+  <script type="text/javascript">
+    var apiKey = '1127';
+    var sessionId = '1_MX4yMDYyNjEzMX5-TW9uIE9jdCAwMSAyMTo0MjowOSBQRFQgMjAxMn4wLjg3MzI5NjR-';
+    var token = 'T1==cGFydG5lcl9pZD0yMDYyNjEzMSZzZGtfdmVyc2lvbj10YnB5LUBzZGtfdmVyc2lvbkAuQG9wZW50b2suc2RrLnB5dGhvbi5tb2RfdGltZUAmc2lnPWMyOTg0NWMwN2Q2Y2QxYWVmZDllMDY4ZGFiZjQ2ZjRjZDY1N2IxNTk6bm9uY2U9NjQ2NjUmY3JlYXRlX3RpbWU9MTM0OTE1MjkyOSZyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTFfTVg0eU1EWXlOakV6TVg1LVRXOXVJRTlqZENBd01TQXlNVG8wTWpvd09TQlFSRlFnTWpBeE1uNHdMamczTXpJNU5qUi0=';          
+     
+    TB.setLogLevel(TB.DEBUG);    
+ 
+    var session = TB.initSession(sessionId);     
+    session.addEventListener('sessionConnected', sessionConnectedHandler);
+    session.connect(apiKey, token);
+ 
+    var publisher;
+ 
+    function sessionConnectedHandler(event) {
+      // Put my webcam in a div
+      var publishProps = {height:240, width:320};
+      publisher = TB.initPublisher(apiKey, 'myPublisherDiv', publishProps);
+      // Send my stream to the session
+      session.publish(publisher);
+    }
+  </script>
+ 
+</head>
+ 
+<body>
+  <div id="myPublisherDiv"></div>
+</body>
+</html>
