@@ -135,8 +135,7 @@ function handleTwitterConnectButton(){
 
 function handleStartNewSessionClick(){	
 	currentSessionName = "";
-	//// this button toggles from "start a new session" to "exit session"
-
+	//// this button toggles from "start a new session" to "exit session";
 	if (isConnectedToTwitter && !isPublishing) {		
 		if (isSessionConnected){
 			theSessionId = myInitialSessionID;
