@@ -19,10 +19,10 @@ var tokliveParams = new TokliveParams();
 
 */
 
-tokliveParams.baseURL = "http://www.randytroppmann.com/toklive/";
-tokliveParams.twitterTerms = "leolaporte";
+tokliveParams.baseURL = "http://localhost/socailtalk/TokLive/web/";
+/*tokliveParams.twitterTerms = "leolaporte";
 tokliveParams.streamProvider = "ustream";
-tokliveParams.streamId = "1524";
+tokliveParams.streamId = "1524";*/
 
 
 
