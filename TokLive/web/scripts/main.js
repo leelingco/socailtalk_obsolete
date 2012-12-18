@@ -1,10 +1,19 @@
 function twitterConnect(){
-	window.open('https://api.twitter.com/oauth/authenticate?oauth_callback=http%3A%2F%2Flocalhost%2Fredirect.php&oauth_token='+TwitterAccessToken,'twitter connect','width=800,height=300');
+	window.open('/socailtalk/TokLive/web/php/twitterOauth.php','twitter connect','width=800,height=300');
 }
-function twitterConnectSuccess(token){
-	$('#twitter-button').replaceWith($('<span>signed in</span>'));
-	TwitterOAuthToken=token;
-	$.cookie('TwitterOAuthToken',TwitterOAuthToken);
+function twitterConnectSuccess(){
+	$.ajax({
+		url:'/socailtalk/TokLive/web/php/twitter.php?command=friends',
+		dataType:'json',
+		success:function(d){
+			var users=d.users;
+			var con=$('<ul></ul>').appendTo($('#twitter-section').html(''));
+			for(var i in users){
+				var u=users[i];
+				$('<li><img src="'+u.profile_background_image_url+'"><span>'+u.name+'</span><br/><span>'+u.location+'</span></li>').appendTo(con);
+			}
+		}
+	})
 }
 function createSession(){
 	$.ajax({
@@ -14,7 +23,9 @@ function createSession(){
 			var result=JSON.parse(d).result;
 			TokLiveSession=result.sessionId;
 			TokLiveToken=result.token;
-			$('#create-chartroom').html('you are in chartroom');
+			$('#create-chartroom').html('leave chartroom').removeAttr('onclick').unbind('click').click(function(){
+				endVideo();
+			});
 			loadVideoWindow();
 		}
 	})
@@ -56,6 +67,9 @@ function loadVideoWindow(){
 
 function endVideo(){
 	$('.right>div').html("<img id='video-window' src='http://placehold.it/600x450&text=Video'>");
+	$('#create-chartroom').html('create a chartroom').unbind('click').click(function(){
+		createSession();
+	});
 }
 $.cookie = function(key, value, options) {
 

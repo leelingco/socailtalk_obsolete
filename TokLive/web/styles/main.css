@@ -112,6 +112,11 @@ input{
 .steps a{
 	
 }
+button{
+	padding: 5px;
+	font-size: 12px;
+	font-weight: bold;
+}
 .extra-video{
 	width:300px;
 	height:200px;
