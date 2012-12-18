@@ -86,7 +86,7 @@ abstract class OAuthStoreSQL extends OAuthStoreAbstract
 				
 				// Try the default mysql connect
 				$this->conn = mysql_connect('127.0.0.1','root','');
-				 mysql_select_db('test'); 
+				 mysql_select_db('toklive'); 
 				
 			}
 
