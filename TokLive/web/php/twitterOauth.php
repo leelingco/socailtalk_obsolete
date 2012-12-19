@@ -1,16 +1,27 @@
 <?php
 include_once "oauth-php/library/OAuthStore.php";
 include_once "oauth-php/library/OAuthRequester.php";
-$options = array('server' => 'mysql.cambridgesolutions.net', 'username' => 'toklive',
-                 'password' => '0fferpal',  'database' => 'toklive');
+$serverHost= $_SERVER['HTTP_HOST'];
+if($serverHost=='127.0.0.1'){
+	$options = array('server' => '127.0.0.1', 'username' => 'root',
+	                 'password' => '',  'database' => 'test');
+	$ck='pxAhOddHpARGQcqfyEu3Q';
+	$cs='45w8NSfMtDyjrB5xriultt743lXSEvq0DqN5q7gU';
+}else{
+	$options = array('server' => 'mysql.cambridgesolutions.net', 'username' => 'toklive',
+	                 'password' => '0fferpal',  'database' => 'toklive');
+	$ck='I6mfCEfoJrC7Yxgi6sv2g';
+	$cs='nEFURXnMefLbL1nh7drkvr3CLl9HR92l31XplZqxdgQ';
+}
+
 $store   = OAuthStore::instance('MySQL', $options);
 
 $user_id = 1;
 $store->deleteServer('pxAhOddHpARGQcqfyEu3Q', $user_id);
 // The server description
 $server = array(
-    'consumer_key' => 'pxAhOddHpARGQcqfyEu3Q',
-    'consumer_secret' => '45w8NSfMtDyjrB5xriultt743lXSEvq0DqN5q7gU',
+    'consumer_key' => $ck,
+    'consumer_secret' => $cs,
     'server_uri' => 'https://api.twitter.com/',
     'signature_methods' => array('HMAC-SHA1'),
     'request_token_uri' => 'https://api.twitter.com/oauth/request_token',
