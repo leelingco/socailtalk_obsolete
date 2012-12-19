@@ -2,6 +2,8 @@
 include_once "oauth-php/library/OAuthStore.php";
 include_once "oauth-php/library/OAuthRequester.php";
 
+$options = array('server' => 'mysql.cambridgesolutions.net', 'username' => 'toklive',
+                 'password' => '0fferpal',  'database' => 'toklive');
 $consumer_key = 'pxAhOddHpARGQcqfyEu3Q';
 $oauth_token = $_GET['oauth_token'];
 $user_id = $_GET['usr_id'];
@@ -9,7 +11,7 @@ $user_id=1;
 
 try
 {
-    OAuthRequester::requestAccessToken($consumer_key, $oauth_token, $user_id);
+    OAuthRequester::requestAccessToken($consumer_key, $oauth_token, $user_id,'POST',$options);
 }
 catch (OAuthException $e)
 {
