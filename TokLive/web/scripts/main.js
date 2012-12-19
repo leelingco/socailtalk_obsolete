@@ -3,15 +3,36 @@ function twitterConnect(){
 }
 function twitterConnectSuccess(){
 	$.ajax({
-		url:'/socailtalk/TokLive/web/php/twitter.php?command=friends',
+		url:'/socailtalk/TokLive/web/php/twitter.php',
+		type:'POST',
+		data:'command=friends',
 		dataType:'json',
 		success:function(d){
 			var users=d.users;
 			var con=$('<ul></ul>').appendTo($('#twitter-section').html(''));
 			for(var i in users){
 				var u=users[i];
-				$('<li><img src="'+u.profile_background_image_url+'"><span>'+u.name+'</span><br/><span>'+u.location+'</span></li>').appendTo(con);
+				var li=$('<li user_id="'+u.id+'"><img class="twitter-profile" src="'+u.profile_background_image_url+'"><div class="twitter-metas"><span>'+u.name+'</span><br/><span>'+u.location+'</span></div></li>').appendTo(con);
+				li.click(function(){
+					var me=$(this);
+					con.find('.active').removeClass('active');
+					me.addClass('active');
+					$('#twitter-invite-to').html(' to '+me.find('span:first').html());
+				})
 			}
+		}
+	})
+}
+function sendTwitterInvite(){
+	var text=$('#share-url').val();
+	var user_id=$('#twitter-section ul li.active').attr('user_id');
+	$.ajax({
+		url:'/socailtalk/TokLive/web/php/twitter.php',
+		type:'POST',
+		data:'command=message&text='+escape(text)+'&user_id='+user_id,
+		dataType:'json',
+		success:function(d){
+			console.log(d);
 		}
 	})
 }
@@ -19,7 +40,6 @@ function createSession(){
 	$.ajax({
 		url:'/socailtalk/TokLive/web/php/GetSession.php',
 		success:function(d){
-			console.log(d);
 			var result=JSON.parse(d).result;
 			TokLiveSession=result.sessionId;
 			TokLiveToken=result.token;
@@ -34,7 +54,7 @@ function loadVideoWindow(){
 	var apiKey = '22095912';
 	var session = TB.initSession(TokLiveSession);
 	setTimeout(function(){
-		$('#share-url').val('http://www.cambridgesolutions.net/socailtalk/TokLive/web/index.php?sessionId='+TokLiveSession);
+		$('#share-url').val('hey, join me at http://www.cambridgesolutions.net/socailtalk/TokLive/web/index.php?sessionId='+TokLiveSession);
 	},5000);
 	session.addEventListener('sessionConnected', sessionConnectedHandler);
 	session.addEventListener('streamCreated', streamCreatedHandler);		
