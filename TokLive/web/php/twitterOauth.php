@@ -17,7 +17,7 @@ if($serverHost=='127.0.0.1'){
 $store   = OAuthStore::instance('MySQL', $options);
 
 $user_id = 1;
-$store->deleteServer('pxAhOddHpARGQcqfyEu3Q', $user_id);
+$store->deleteServer($ck, $user_id);
 // The server description
 $server = array(
     'consumer_key' => $ck,
