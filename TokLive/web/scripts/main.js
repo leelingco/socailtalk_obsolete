@@ -17,7 +17,7 @@ function twitterConnectSuccess(){
 }
 function createSession(){
 	$.ajax({
-		url:'/socailtalk/TokLive/web/php/getSession.php',
+		url:'/socailtalk/TokLive/web/php/GetSession.php',
 		success:function(d){
 			console.log(d);
 			var result=JSON.parse(d).result;
