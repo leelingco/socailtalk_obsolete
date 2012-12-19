@@ -1,8 +1,8 @@
 <?php
 include_once "oauth-php/library/OAuthStore.php";
 include_once "oauth-php/library/OAuthRequester.php";
-$options = array('server' => '127.0.0.1', 'username' => 'root',
-                 'password' => '',  'database' => 'toklive');
+$options = array('server' => 'mysql.cambridgesolutions.net', 'username' => 'toklive',
+                 'password' => '0fferpal',  'database' => 'toklive');
 $store   = OAuthStore::instance('MySQL', $options);
 
 $user_id = 1;
