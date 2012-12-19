@@ -56,7 +56,9 @@ class OAuthRequestSigner extends OAuthRequest
 	 */
 	function __construct ( $request, $method = null, $params = null, $body = null )
 	{
-		$this->store = OAuthStore::instance();
+		$options = array('server' => 'mysql.cambridgesolutions.net', 'username' => 'toklive',
+		                 'password' => '0fferpal',  'database' => 'toklive');
+		$this->store = OAuthStore::instance('MySQL', $options);
 		
 		if (is_string($params))
 		{
